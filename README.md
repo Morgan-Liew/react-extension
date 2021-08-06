@@ -51,7 +51,38 @@
 
    ​    setXxx(value => newValue):参数作为函数，接收原本的状态值，返回新的状态值
 
+### 4.Effect Hook
+ (1). Effect Hook可以让你在函数组件中执行副作用操作（生命周期钩子）
 
+ (2). React中的副作用操作：
+
+​		发Ajax请求数据获取
+
+​		设置订阅 /  启动定时器
+
+  	  手动更改真实DOM
+
+ (3).语法说明：
+
+ 		useEffect(() => {
+
+​			// 在此可以执行任何带副作用操作
+
+​			return () => {				// 在组件卸载前执行
+
+​				// 在此做些收尾工作，如清除定时器、取消订阅等
+
+ 			}
+
+​		}，[stateValue]) //如果指定的是[]，回调函数只会在第一次render()后执行
+
+ (4).可以将useEffect Hook看成三个函数的组合
+
+​     componentDidMount()
+
+​     componentDidUpdate()
+
+​     componentWillUnmount()	
 
 # Getting Started with Create React App
 

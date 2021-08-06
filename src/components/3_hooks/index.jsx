@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ReactDOM from 'react-dom'
 
 // 类式组件
 /* export default class Demo extends Component {
@@ -44,7 +45,12 @@ export default function Demo() {
   const [name, setName] = React.useState("Daming");
 
   React.useEffect(() => {
-
+    let timer = setInterval(() => {
+        setCount(count => count + 1)
+    }, 1000);
+    return () =>{
+        clearInterval(timer)
+    }
   },[]);
 
   function add() {
@@ -54,6 +60,10 @@ export default function Demo() {
 
   function changeName() {
     setName((name) => (name = "Morgan.Liew"));
+  }
+
+  function unmount(){
+      ReactDOM.unmountComponentAtNode(document.getElementById('root'))
   }
 
   return (
