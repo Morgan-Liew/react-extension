@@ -84,6 +84,71 @@
 
 ​     componentWillUnmount()	
 
+### Ref Hook
+    (1). Ref Hook可以在函数组件中存储/查找组件内的标签或任意其他数据
+    (2). 语法： const refContainer = useRef()
+    (3). 作用：保存标签对象，功能与React.createRef()一样
+
+### Fragment
+    使用： <Fragment></Fragment> or <></>
+    作用：可以不用必须有一个真实的DOM根标签
+
+### Context
+    理解
+      一种组件间通信方式，常用于【祖组件】和【后代组件】间通信
+
+    使用
+    1) 创建Context容器对象
+
+    2) 渲染子组件时，外面包裹xxxContext.Provider，通过value属性给后代组件传递数据
+       <xxxContext.Provider value={数据}>
+         子组件
+       </xxxContext.Provider>
+
+    3) 后代组件读取数据
+       
+       <!-- 第一种方式 仅用于类组件 -->
+       static contextType = xxxContext  // 声明接收context
+       this.context  //读取context中的value数据
+
+       <!-- 第二种方式 函数组件与类组件都可以 -->
+       <xxxContext.Consumer>
+         {
+            value => ( // value就是 context中的value数据
+               要显示的内容
+            )
+         }
+       </xxxContext.Consumer>
+
+    注意 在应用开发中一般不用context，一般都用它的封装react插件
+
+### 组件优化
+    Component的2个问题
+      1.只要执行setState(),即使不改变状态数据，组件也会重新render
+      2.只要当前组件重新render，就会自动重新render子组件 ==> 效率低
+
+    效率高的做法
+      只有当组件的state或props数据发生改变时才重新render
+
+    原因
+      Component中的shouldComponentUpdate()总是返回true
+    
+    解决
+      办法1：
+         重写shouldComponentUpdate()方法
+         比较新旧state或props数据，如果有变化才返回true，如果没有返回false
+
+      办法2：
+         使用PureComponent
+         PureComponent重写了shouldComponentUpdate()，只有state或props数据有变化时才返回true
+
+         注意：只是进行state和props数据的浅比较，如果只是数据对象内部数据变了，返回false
+              不要直接修改state数据，而是要产生新数据
+      
+      项目中一般使用PureComponent来优化
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

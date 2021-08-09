@@ -1,0 +1,17 @@
+.parent{
+    width: 500px;
+    background-color: #f28e16;
+    padding: 5px;
+}
+
+.child{
+    width: 100%;
+    background-color: #51c4d3;
+    padding: 5px;
+}
+
+.graph{
+    width: 100%;
+    background-color: #c4d7d6;
+    padding: 5px;
+}

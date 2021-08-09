@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import ReactDOM from 'react-dom'
 
 // 类式组件
@@ -43,6 +43,7 @@ export default function Demo() {
   // 返回值：包含2个元素的数组，第一个为内部当前状态值，第2个为更新状态值的函数
   const [count, setCount] = React.useState(0);
   const [name, setName] = React.useState("Daming");
+  const myRef = React.useRef();
 
   React.useEffect(() => {
     let timer = setInterval(() => {
@@ -62,6 +63,10 @@ export default function Demo() {
     setName((name) => (name = "Morgan.Liew"));
   }
 
+  function show(){
+    alert(myRef.current.value)
+  }
+
   function unmount(){
       ReactDOM.unmountComponentAtNode(document.getElementById('root'))
   }
@@ -70,8 +75,11 @@ export default function Demo() {
     <div>
       <h2>the current sum : {count}</h2>
       <h2>the author : {name}</h2>
+      <input type="text" ref={myRef} />
       <button onClick={add}> +1 </button>&nbsp;&nbsp;
       <button onClick={changeName}>change Name</button>
+      <button onClick={unmount}>unmount component</button>
+      <button onClick={show}>show input</button>
     </div>
   );
 }
